@@ -25,16 +25,16 @@ public class Player : MonoBehaviour
 			Vector3 direction = Vector3.RotateTowards(Vector3.forward, moveVector, 3f, 0f);
 			gameObject.transform.rotation = Quaternion.LookRotation(direction);
 		}
-		characterController.Move(moveVector * 3f * Time.deltaTime);
+		characterController?.Move(moveVector * 6f * Time.deltaTime);
 		AnimationsSolution();
 	}
 
 	private void AnimationsSolution() {
 		if (moveVector.x == 0 && moveVector.z == 0) {
-			animator.SetInteger("State", 1);
+			animator?.SetInteger("State", 1);
 		}
 		else {
-			animator.SetInteger("State", 2);
+			animator?.SetInteger("State", 2);
 		}
 	}
 }
