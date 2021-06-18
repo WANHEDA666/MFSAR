@@ -1,40 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
 	[SerializeField] private Joystick joystick;
-
-	private Animator animator;
-	private CharacterController characterController;
+	[SerializeField] private Scylla Scylla;
+	
+	private Rigidbody playerRigidbody;
 	private Vector3 moveVector;
-	//private Rigidbody playerRigidbody;
 
-	private void Awake() {
-		animator = gameObject.GetComponent<Animator>();
-		characterController = gameObject.GetComponent<CharacterController>();
-		//playerRigidbody = gameObject.GetComponent<Rigidbody>();
+	private void Start()
+	{
+		playerRigidbody = gameObject.GetComponent<Rigidbody>();
 	}
 
-	private void Update() {
+	private void Update()
+	{
 		moveVector = new Vector3();
 		moveVector.x = joystick.Horizontal;
 		moveVector.z = joystick.Vertical;
-		if (Vector3.Angle(Vector3.forward, moveVector) > 1f || Vector3.Angle(Vector3.forward, moveVector) == 0) {
-			Vector3 direction = Vector3.RotateTowards(Vector3.forward, moveVector, 3f, 0f);
-			gameObject.transform.rotation = Quaternion.LookRotation(direction);
-		}
-		characterController?.Move(moveVector * 6f * Time.deltaTime);
-		AnimationsSolution();
+		playerRigidbody.velocity = new Vector3(moveVector.x * 5f, playerRigidbody.velocity.y, moveVector.z * 5f);
+		Scylla.AnimationsSolution(moveVector);
+		Scylla.SetThePosition(gameObject.transform.position);
 	}
 
-	private void AnimationsSolution() {
-		if (moveVector.x == 0 && moveVector.z == 0) {
-			animator?.SetInteger("State", 1);
-		}
-		else {
-			animator?.SetInteger("State", 2);
-		}
+	public void SetAll()
+	{
+		playerRigidbody.useGravity = true;
+		gameObject.GetComponent<BoxCollider>().enabled = true;
 	}
 }
