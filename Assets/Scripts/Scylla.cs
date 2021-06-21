@@ -14,7 +14,7 @@ public class Scylla : MonoBehaviour
 
     public void SetThePosition(Vector3 pos)
     {
-	    gameObject.transform.position = new Vector3(pos.x, gameObject.transform.position.y, pos.z);
+	    gameObject.transform.position = new Vector3(pos.x, /*gameObject.transform.position.y*/pos.y - 0.7f, pos.z);
     }
 
     public void AnimationsSolution(Vector3 moveVector) {

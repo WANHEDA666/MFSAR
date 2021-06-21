@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 		moveVector.x = joystick.Horizontal;
 		moveVector.z = joystick.Vertical;
 		playerRigidbody.velocity = new Vector3(moveVector.x * 5f, playerRigidbody.velocity.y, moveVector.z * 5f);
+		//Debug.Log(moveVector.x);
 		Scylla.AnimationsSolution(moveVector);
 		Scylla.SetThePosition(gameObject.transform.position);
 	}
@@ -31,6 +32,6 @@ public class Player : MonoBehaviour
 	public void SetAll()
 	{
 		playerRigidbody.useGravity = true;
-		gameObject.GetComponent<BoxCollider>().enabled = true;
+		gameObject.GetComponent<CapsuleCollider>().enabled = true;
 	}
 }
