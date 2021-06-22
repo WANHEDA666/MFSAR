@@ -7,14 +7,12 @@ public class Scylla : MonoBehaviour
 {
     private Animator animator;
 
-    private void Start()
-    {
+    private void Awake() {
         animator = gameObject.GetComponent<Animator>();
     }
 
-    public void SetThePosition(Vector3 pos)
-    {
-	    gameObject.transform.position = new Vector3(pos.x, /*gameObject.transform.position.y*/pos.y - 0.7f, pos.z);
+    public void SetThePosition(Vector3 pos) {
+	    gameObject.transform.position = new Vector3(pos.x, pos.y - 0.7f, pos.z);
     }
 
     public void AnimationsSolution(Vector3 moveVector) {

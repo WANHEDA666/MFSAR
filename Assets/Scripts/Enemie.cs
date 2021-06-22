@@ -42,7 +42,32 @@ public class Enemie : MonoBehaviour
 	}
 
 	private void GetScylla(Vector3 ScyllaPosition) {
-		this.SetSpecificTarget(ScyllaPosition);
+		float bestConditionFloat = 100f;
+		Vector3 bestConditionVector = new Vector3();
+		foreach (Transform pos in positions) {
+			if (Vector3.Distance(pos.position, ScyllaPosition) < bestConditionFloat) {
+				bestConditionFloat = Math.Abs(Vector3.Distance(pos.position, ScyllaPosition));
+				bestConditionVector = pos.position;
+			}
+		}
+		this.SetSpecificTarget(bestConditionVector);
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.gameObject.GetComponent<Player>() != null) {
+			FindingEvent.EventHandler(other.gameObject.transform.position);
+		}
+	}
+
+	private void OnTriggerStay(Collider other) {
+		if (other.gameObject.GetComponent<Player>() != null) {
+			FindingEvent.EventHandler(other.gameObject.transform.position);
+			if (Vector3.Distance(gameObject.transform.position, other.gameObject.transform.position) < 1.4f) this.GameHasLost();
+		}
+	}
+
+	private void GameHasLost() {
+
 	}
 }
 
