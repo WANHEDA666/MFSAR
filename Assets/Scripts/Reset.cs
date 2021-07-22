@@ -16,24 +16,24 @@ public class Reset : MonoBehaviour
 	[SerializeField] private GameObject AbigailGameObject;
 
 	private void Awake() {
-		GameEndEvent.EventHandler += new GameEndEvent.CurrentEvent(GameHasBeenEnded);
+		//GameEndEvent.EventHandler += new GameEndEvent.CurrentEvent(GameHasBeenEnded);
 		ExitEvent.EventHandler += new ExitEvent.CurrentEvent(Exit);
 	}
 
 	private void Exit() {
-		GameEndEvent.EventHandler -= new GameEndEvent.CurrentEvent(GameHasBeenEnded);
+		//GameEndEvent.EventHandler -= new GameEndEvent.CurrentEvent(GameHasBeenEnded);
 		ExitEvent.EventHandler -= new ExitEvent.CurrentEvent(Exit);
 	}
 
-	private void GameHasBeenEnded(string name, game_end_States restart) {
-		if (restart == game_end_States.game_lost) canvasController.SetHuntersSpeech(name);
-		else if (restart == game_end_States.raelle_talk) {
-			canvasController.SetRaelleSpeech();
-		}
-	}
+	//private void GameHasBeenEnded(string name, game_end_States restart) {
+	//	if (restart == game_end_States.game_lost) canvasController.SetHuntersSpeech(name);
+	//	else if (restart == game_end_States.raelle_talk) {
+	//		canvasController.SetRaelleSpeech();
+	//	}
+	//}
 
 	public void ResetTheGame() {
-		GameEndEvent.EventHandler("", game_end_States.game_restart);
+		//GameEndEvent.EventHandler("", game_end_States.game_restart);
 		ScyllaGameObject.transform.position = new Vector3(ScyllaTransform.x, ScyllaGameObject.transform.position.y, ScyllaTransform.z);
 		TallyGameObject.transform.position = new Vector3(TallyTransform.x, TallyGameObject.transform.position.y, TallyTransform.z);
 		RaelleGameObject.transform.position = new Vector3(RaelleTransform.x, RaelleGameObject.transform.position.y, RaelleTransform.z);
@@ -42,8 +42,8 @@ public class Reset : MonoBehaviour
 }
 
 public static class GameEndEvent {
-	public delegate void CurrentEvent(string name, game_end_States restart);
-	public static CurrentEvent EventHandler;
+	//public delegate void CurrentEvent(string name, game_end_States restart);
+	//public static CurrentEvent EventHandler;
 }
 
 public static class ExitEvent {

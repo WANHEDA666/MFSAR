@@ -11,7 +11,7 @@ public class CanvasController : MonoBehaviour
 	private Text BestBalloonsScore { get; set; }
 	private Text CurrentBalloonsScore { get; set; }
 	private int currentScore { get; set; }
-	private GirlsFaceHolder girlsFaces { get; set; }
+	//private GirlsFaceHolder girlsFaces { get; set; }
 	private Text huntersName { get; set;}
 	private Text huntersSpeech { get; set; }
 	private GameObject PanelReset { get; set; }
@@ -26,17 +26,17 @@ public class CanvasController : MonoBehaviour
 	private void Awake() {
 		BestBalloonsScore = gameObject.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
 		CurrentBalloonsScore = gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
-		girlsFaces = gameObject.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponentInChildren<GirlsFaceHolder>();
+		//girlsFaces = gameObject.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.transform.GetChild(2).gameObject.GetComponentInChildren<GirlsFaceHolder>();
 		huntersName = gameObject.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
 		huntersSpeech = gameObject.transform.GetChild(3).gameObject.transform.GetChild(2).gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
 		PanelReset = gameObject.transform.GetChild(3).gameObject;
 		raelleSpeech = gameObject.transform.GetChild(4).gameObject;
-		BalloonsIncreaseEvent.EventHandler += new BalloonsIncreaseEvent.CurrentEvent(BalloonsIncrease);
+		//BalloonsIncreaseEvent.EventHandler += new BalloonsIncreaseEvent.CurrentEvent(BalloonsIncrease);
 		ExitEvent.EventHandler += new ExitEvent.CurrentEvent(Exit);
 	}
 
 	private void Exit() {
-		BalloonsIncreaseEvent.EventHandler -= new BalloonsIncreaseEvent.CurrentEvent(BalloonsIncrease);
+		//BalloonsIncreaseEvent.EventHandler -= new BalloonsIncreaseEvent.CurrentEvent(BalloonsIncrease);
 		ExitEvent.EventHandler -= new ExitEvent.CurrentEvent(Exit);
 	}
 
@@ -60,7 +60,7 @@ public class CanvasController : MonoBehaviour
 		PanelReset.SetActive(true);
 		huntersName.text = name;
 		huntersSpeech.text = hunters[name];
-		girlsFaces.gameObject.GetComponent<Image>().sprite = name == "Raelle" ? girlsFaces.Raelle : name == "Abigail" ? girlsFaces.Abigail : girlsFaces.Tally;
+		//girlsFaces.gameObject.GetComponent<Image>().sprite = name == "Raelle" ? girlsFaces.Raelle : name == "Abigail" ? girlsFaces.Abigail : girlsFaces.Tally;
 	}
 
 	public void SetRaelleSpeech() {
