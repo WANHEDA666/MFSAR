@@ -27,7 +27,7 @@ public class EnemiesHolder : MonoBehaviour, EnemiesView
 [System.Serializable]
 public class EnemieComplex
 {
-    //public enemie_name enemieName;
+    public enemie_name enemieName;
     public GameObject enemiePrefab;
     public Sprite enemieFace;
 }
