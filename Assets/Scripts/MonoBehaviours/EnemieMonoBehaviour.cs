@@ -82,7 +82,7 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
     {
         scyllaIsFound = false;
         target = positionsForSearching[UnityEngine.Random.Range(0, positionsForSearching.Length)];
-        navMeshAgent.SetDestination(target);
+        //navMeshAgent.SetDestination(target);
     }
 
     public void Update()

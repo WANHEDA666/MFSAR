@@ -80,7 +80,8 @@ public sealed class GraphMonoBehaviour : MonoBehaviour
         foreach (Vector3 position in balloonPrefabAndBalloonsPositionsView.BaloonsPositions)
         {
             Vector3 positionForTheBalloon = new Vector3(position.x - 0.94f, position.y, position.z);
-            GameObject balloonPrefab = Instantiate(balloonPrefabAndBalloonsPositionsView.Balloon, positionForTheBalloon, Quaternion.identity);
+            GameObject balloonPrefab = Instantiate(balloonPrefabAndBalloonsPositionsView.Balloon, gameObject.transform);
+            balloonPrefab.transform.localPosition = positionForTheBalloon;
             balloonPrefab.GetComponent<BalloonMonoBehaviour>().SetBalloon(
                 balloons,
                 balloonPrefab.GetComponentInChildren<ParticleSystem>(),
