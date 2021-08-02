@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.DocumentModel.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.TextControl.dll" />
+    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Core.Text.JetMetadata.sstg" />
+  </ItemGroup>
+</Project>

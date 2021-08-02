@@ -23,8 +23,8 @@ MonoBehaviour:
     useDelayedLoadingObjectTargets: 0
     modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 0
-    version: 9.8.11
-    eulaAcceptedVersions: '{"Values":["9.8","8.1"]}'
+    version: 10.0.12
+    eulaAcceptedVersions: '{"Values":["9.8","8.1","10.0"]}'
   database:
     disableModelExtraction: 0
   shaders:
@@ -40,7 +40,7 @@ MonoBehaviour:
     autoImportArcore: 1
   playmode:
     mSequencePath: 
-    playModeType: 0
+    playModeType: 1
   webcam:
     renderTextureLayer: 30
   packageInformation:

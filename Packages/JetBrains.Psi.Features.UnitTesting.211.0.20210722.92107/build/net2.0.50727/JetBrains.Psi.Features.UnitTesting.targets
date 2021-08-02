@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="JetBrains.ReSharper.TaskRunnerFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.TaskRunnerFramework.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.nUnit">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestRunner.nUnit.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

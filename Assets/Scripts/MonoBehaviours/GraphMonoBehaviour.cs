@@ -56,7 +56,8 @@ public sealed class GraphMonoBehaviour : MonoBehaviour
             enemiesView.PositionsForSearching,
             gameState,
             canvasController,
-            enemiesView.Raelle
+            enemiesView.Raelle,
+            gameObject.transform.Find("LocalTargetRaelle").gameObject.transform
         );
         abigail.GetComponent<EnemieMonoBehaviour>().SetEnemie(
             abigail.GetComponent<NavMeshAgent>(),
@@ -64,7 +65,8 @@ public sealed class GraphMonoBehaviour : MonoBehaviour
             enemiesView.PositionsForSearching,
             gameState,
             canvasController,
-            enemiesView.Abigail
+            enemiesView.Abigail,
+            gameObject.transform.Find("LocalTargetAbigail").gameObject.transform
         );
         tally.GetComponent<EnemieMonoBehaviour>().SetEnemie(
             tally.GetComponent<NavMeshAgent>(),
@@ -72,7 +74,8 @@ public sealed class GraphMonoBehaviour : MonoBehaviour
             enemiesView.PositionsForSearching,
             gameState,
             canvasController,
-            enemiesView.Tally
+            enemiesView.Tally,
+            gameObject.transform.Find("LocalTargetTally").gameObject.transform
         );
 
         BalloonsPresenter balloons = new BalloonsPresenterImpl(generalPreferences, canvasController);

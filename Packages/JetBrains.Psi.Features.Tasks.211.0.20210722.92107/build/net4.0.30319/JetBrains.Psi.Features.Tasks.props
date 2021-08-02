@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\CsLex.exe" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\ErrorsGen.exe" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Psi.Features.Tasks.Build.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JsLibGen.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\LibGeneratorUtil.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\PsiGen.exe" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\TokenGenerator.exe" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\TsLibGen.dll" />
+    <JetContent Include="$(MSBuildThisFileDirectory)..\..\DotFiles\PsiTasks\ErrorDescription.xsd">
+      <TargetPath>PsiTasks\ErrorDescription.xsd</TargetPath>
+    </JetContent>
+    <JetContent Include="$(MSBuildThisFileDirectory)..\..\DotFiles\PsiTasks\Unicode.lex">
+      <TargetPath>PsiTasks\Unicode.lex</TargetPath>
+    </JetContent>
+    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Psi.Features.Tasks.JetMetadata.sstg" />
+  </ItemGroup>
+</Project>

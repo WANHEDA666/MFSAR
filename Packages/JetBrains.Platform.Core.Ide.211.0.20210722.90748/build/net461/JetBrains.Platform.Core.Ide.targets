@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="JetBrains.Platform.DocumentManager">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.DocumentManager.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.Ide">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Ide.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.MsBuildHost">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.MsBuildHost.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ProjectModel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.ProjectModel.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.Platform.ProjectModel.Host">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.ProjectModel.Host.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

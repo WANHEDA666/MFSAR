@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="JetBrains.ReSharper.UnitTestExplorer">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestExplorer.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest10">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestProvider.MSTest10.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest11">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestProvider.MSTest11.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest12">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestProvider.MSTest12.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest14">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestProvider.MSTest14.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest15">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestProvider.MSTest15.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestProvider.MSTest16">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestProvider.MSTest16.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+    <Reference Include="JetBrains.ReSharper.UnitTestRunner.MSTest10">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.UnitTestRunner.MSTest10.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.BuildScripts.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.CSharp.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.Engine.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.Protobuf.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.Resx.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.Specific.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.Xaml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Daemon.Xml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.ExternalSources.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Altering.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Environment.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Inspections.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Intellisense.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Intellisense.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Internal.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Navigation.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Navigation.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.RegExp.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.ReSpeller.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.StructuralSearch.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Features.Xml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.I18n.Services.CSharp.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.I18n.Services.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.I18n.Services.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.I18n.Services.Xaml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.InplaceRefactorings.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.BuildScripts.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.CSharp.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.Resx.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.Xaml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Intentions.Xml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.LiveTemplates.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.LiveTemplates.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.NewRefactorings.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Refactorings.BuildScripts.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Refactorings.CSharp.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Refactorings.VB.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Refactorings.Xaml.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.SolutionAnalysis.dll" />
+    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Psi.Features.src.JetMetadata.sstg" />
+  </ItemGroup>
+</Project>

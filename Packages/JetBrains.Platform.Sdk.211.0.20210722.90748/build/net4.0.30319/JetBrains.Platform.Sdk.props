@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.SDK.Common.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.SDK.Helper.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.SDK.MsBuild.dll" />
+    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Sdk.JetMetadata.sstg" />
+  </ItemGroup>
+</Project>

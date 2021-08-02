@@ -10,43 +10,77 @@ public class AddVuforiaEnginePackage
 {
     static readonly string sPackagesPath = Path.Combine(Application.dataPath, "..", "Packages");
     static readonly string sManifestJsonPath = Path.Combine(sPackagesPath, "manifest.json");
-    const string VUFORIA_VERSION = "9.8.11";
+    const string VUFORIA_VERSION = "10.0.12";
     const string PACKAGE_KEY = "com.ptc.vuforia.engine";
     const string GIT_URL = "git+https://git-packages.developer.vuforia.com";
+    const string VUFORIA_TAR_FILE_DIR = "Assets/Editor/Migration/";
+    const string PACKAGES_RELATIVE_PATH = "Packages";
 
     static readonly ScopedRegistry sVuforiaRegistry = new ScopedRegistry()
     {
         name = "Vuforia",
         url = "https://registry.packages.developer.vuforia.com/",
-        scopes = new[] {"com.ptc.vuforia"}
+        scopes = new[] { "com.ptc.vuforia" }
     };
 
     static AddVuforiaEnginePackage()
     {
         if (Application.isBatchMode)
             return;
-
+        
         var manifest = Manifest.JsonDeserialize(sManifestJsonPath);
 
-        if (!IsUsingRightGitUrl(manifest))
+        if (!IsVuforiaUpToDate(manifest))
             DisplayAddPackageDialogue(manifest);
+    }
+    
+    static bool IsVuforiaUpToDate(Manifest manifest)
+    {
+        var dependencies = manifest.Dependencies.Split(',').ToList();
+        bool upToDate = false;
+        // is git dependency
+        if (dependencies.Any(d => d.Contains(PACKAGE_KEY) && d.Contains(GIT_URL)))
+            upToDate = IsUsingRightGitUrl(manifest);
+        // tarball path dependency
+        if (dependencies.Any(d => d.Contains(PACKAGE_KEY) && d.Contains("file:")))
+            upToDate = IsUsingRightTarballPath(manifest);
+
+        return upToDate;
     }
 
     static bool IsUsingRightGitUrl(Manifest manifest)
     {
         var dependencies = manifest.Dependencies.Split(',').ToList();
-        return dependencies.Any(d => d.Contains(PACKAGE_KEY) && d.Contains(GIT_URL) && VersionNumberIsTheLatest(d));
+        return dependencies.Any(d => d.Contains(PACKAGE_KEY) && d.Contains(GIT_URL) && VersionNumberIsTheLatestGit(d));
     }
 
-    static bool VersionNumberIsTheLatest(string package)
+    static bool IsUsingRightTarballPath(Manifest manifest)
+    {
+        var dependencies = manifest.Dependencies.Split(',').ToList();
+        return dependencies.Any(d => d.Contains(PACKAGE_KEY) && d.Contains("file:") && VersionNumberIsTheLatestTarball(d));
+    }
+
+    static bool VersionNumberIsTheLatestGit(string package)
     {
         var version = package.Split('#');
         if (version.Length >= 2)
         {
-            version[1] = version[1].TrimEnd(new []{ '"' });
+            version[1] = version[1].TrimEnd(new[] { '"' });
             return IsCurrentVersionHigher(version[1]);
         }
-        
+
+        return false;
+    }
+
+    static bool VersionNumberIsTheLatestTarball(string package)
+    {
+        var version = package.Split('-');
+        if (version.Length >= 2)
+        {
+            version[1] = version[1].TrimEnd(".tgz\"".ToCharArray());
+            return IsCurrentVersionHigher(version[1]);
+        }
+
         return false;
     }
 
@@ -54,7 +88,7 @@ public class AddVuforiaEnginePackage
     {
         if (string.IsNullOrEmpty(currentVersionString) || string.IsNullOrEmpty(VUFORIA_VERSION))
             return false;
-        
+
         var currentVersion = TryConvertStringToVersion(currentVersionString);
         var updatingVersion = TryConvertStringToVersion(VUFORIA_VERSION);
         if (currentVersion >= updatingVersion)
@@ -82,14 +116,22 @@ public class AddVuforiaEnginePackage
     static void DisplayAddPackageDialogue(Manifest manifest)
     {
         if (EditorUtility.DisplayDialog("Add Vuforia Engine Package",
-            $"Would you like to update your project to include the Vuforia Engine {VUFORIA_VERSION} package from Git?\n" +
-            $"If an older Vuforia Engine package is already present in your project it will be upgraded to version {VUFORIA_VERSION}\n\n" +
-            $"Please make sure that Git is installed and on your PATH environment variable.", "Update", "Cancel"))
+            $"Would you like to update your project to include the Vuforia Engine {VUFORIA_VERSION} package from the unitypackage?\n" +
+            $"If an older Vuforia Engine package is already present in your project it will be upgraded to version {VUFORIA_VERSION}\n\n",
+            "Update", "Cancel"))
         {
+            CopyTarball();
             UpdateManifest(manifest);
         }
     }
-
+    
+    static void CopyTarball()
+    {
+        var sourceFile = Path.Combine(Directory.GetCurrentDirectory(), VUFORIA_TAR_FILE_DIR, $"{PACKAGE_KEY}-{VUFORIA_VERSION}.tgz");
+        var destFile = Path.Combine(Directory.GetCurrentDirectory(), PACKAGES_RELATIVE_PATH, $"{PACKAGE_KEY}-{VUFORIA_VERSION}.tgz");
+        File.Copy(sourceFile, destFile, true);
+        File.Delete(sourceFile);
+    }
 
     static void UpdateManifest(Manifest manifest)
     {
@@ -113,7 +155,7 @@ public class AddVuforiaEnginePackage
     {
         var dependencies = manifest.Dependencies.Split(',').ToList();
 
-        var versionEntry = $"\"{GIT_URL}#{VUFORIA_VERSION}\"";
+        var versionEntry = $"\"file:{PACKAGE_KEY}-{VUFORIA_VERSION}.tgz\"";
         var versionSet = false;
         for (var i = 0; i < dependencies.Count; i++)
         {
@@ -159,113 +201,113 @@ public class AddVuforiaEnginePackage
         {
             if (ScopedRegistries.Length > 0)
                 return JsonUtility.ToJson(
-                    new UnitySerializableManifest {scopedRegistries = ScopedRegistries, dependencies = new DependencyPlaceholder()},
+                    new UnitySerializableManifest { scopedRegistries = ScopedRegistries, dependencies = new DependencyPlaceholder() },
                     true);
 
             return JsonUtility.ToJson(
-                new UnitySerializableManifestDependenciesOnly() {dependencies = new DependencyPlaceholder()},
+                new UnitySerializableManifestDependenciesOnly() { dependencies = new DependencyPlaceholder() },
                 true);
         }
-    
 
-    public static Manifest JsonDeserialize(string path)
-    {
-        var jsonString = File.ReadAllText(path);
 
-        var registries = JsonUtility.FromJson<UnitySerializableManifest>(jsonString).scopedRegistries ?? new ScopedRegistry[0];
-        var dependencies = DeserializeDependencies(jsonString);
+        public static Manifest JsonDeserialize(string path)
+        {
+            var jsonString = File.ReadAllText(path);
 
-        return new Manifest {ScopedRegistries = registries, Dependencies = dependencies};
+            var registries = JsonUtility.FromJson<UnitySerializableManifest>(jsonString).scopedRegistries ?? new ScopedRegistry[0];
+            var dependencies = DeserializeDependencies(jsonString);
+
+            return new Manifest { ScopedRegistries = registries, Dependencies = dependencies };
+        }
+
+        static string DeserializeDependencies(string json)
+        {
+            var startIndex = GetDependenciesStart(json);
+            var endIndex = GetDependenciesEnd(json, startIndex);
+
+            if (startIndex == INDEX_NOT_FOUND || endIndex == INDEX_NOT_FOUND)
+                return null;
+
+            var dependencies = json.Substring(startIndex, endIndex - startIndex);
+            return dependencies;
+        }
+
+        static int GetDependenciesStart(string json)
+        {
+            var dependenciesIndex = json.IndexOf(DEPENDENCIES_KEY, StringComparison.InvariantCulture);
+            if (dependenciesIndex == INDEX_NOT_FOUND)
+                return INDEX_NOT_FOUND;
+
+            var dependenciesStartIndex = json.IndexOf('{', dependenciesIndex + DEPENDENCIES_KEY.Length);
+
+            if (dependenciesStartIndex == INDEX_NOT_FOUND)
+                return INDEX_NOT_FOUND;
+
+            dependenciesStartIndex++; //add length of '{' to starting point
+
+            return dependenciesStartIndex;
+        }
+
+        static int GetDependenciesEnd(string jsonString, int dependenciesStartIndex)
+        {
+            return jsonString.IndexOf('}', dependenciesStartIndex);
+        }
     }
 
-    static string DeserializeDependencies(string json)
+    class UnitySerializableManifestDependenciesOnly
     {
-        var startIndex = GetDependenciesStart(json);
-        var endIndex = GetDependenciesEnd(json, startIndex);
-
-        if (startIndex == INDEX_NOT_FOUND || endIndex == INDEX_NOT_FOUND)
-            return null;
-
-        var dependencies = json.Substring(startIndex, endIndex - startIndex);
-        return dependencies;
+        public DependencyPlaceholder dependencies;
     }
 
-    static int GetDependenciesStart(string json)
+    class UnitySerializableManifest
     {
-        var dependenciesIndex = json.IndexOf(DEPENDENCIES_KEY, StringComparison.InvariantCulture);
-        if (dependenciesIndex == INDEX_NOT_FOUND)
-            return INDEX_NOT_FOUND;
-
-        var dependenciesStartIndex = json.IndexOf('{', dependenciesIndex + DEPENDENCIES_KEY.Length);
-
-        if (dependenciesStartIndex == INDEX_NOT_FOUND)
-            return INDEX_NOT_FOUND;
-
-        dependenciesStartIndex++; //add length of '{' to starting point
-
-        return dependenciesStartIndex;
+        public ScopedRegistry[] scopedRegistries;
+        public DependencyPlaceholder dependencies;
     }
 
-    static int GetDependenciesEnd(string jsonString, int dependenciesStartIndex)
+    [Serializable]
+    struct ScopedRegistry
     {
-        return jsonString.IndexOf('}', dependenciesStartIndex);
-    }
-}
+        public string name;
+        public string url;
+        public string[] scopes;
 
-class UnitySerializableManifestDependenciesOnly
-{
-    public DependencyPlaceholder dependencies;
-}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is ScopedRegistry))
+                return false;
 
-class UnitySerializableManifest
-{
-    public ScopedRegistry[] scopedRegistries;
-    public DependencyPlaceholder dependencies;
-}
+            var other = (ScopedRegistry)obj;
 
-[Serializable]
-struct ScopedRegistry
-{
-    public string name;
-    public string url;
-    public string[] scopes;
+            return name == other.name &&
+                   url == other.url &&
+                   scopes.SequenceEqual(other.scopes);
+        }
 
-    public override bool Equals(object obj)
-    {
-        if (!(obj is ScopedRegistry))
-            return false;
+        public static bool operator ==(ScopedRegistry a, ScopedRegistry b)
+        {
+            return a.Equals(b);
+        }
 
-        var other = (ScopedRegistry) obj;
+        public static bool operator !=(ScopedRegistry a, ScopedRegistry b)
+        {
+            return !a.Equals(b);
+        }
 
-        return name == other.name &&
-               url == other.url &&
-               scopes.SequenceEqual(other.scopes);
-    }
+        public override int GetHashCode()
+        {
+            var hash = 17;
 
-    public static bool operator ==(ScopedRegistry a, ScopedRegistry b)
-    {
-        return a.Equals(b);
-    }
+            foreach (var scope in scopes)
+                hash = hash * 23 + (scope == null ? 0 : scope.GetHashCode());
 
-    public static bool operator !=(ScopedRegistry a, ScopedRegistry b)
-    {
-        return !a.Equals(b);
+            hash = hash * 23 + (name == null ? 0 : name.GetHashCode());
+            hash = hash * 23 + (url == null ? 0 : url.GetHashCode());
+
+            return hash;
+        }
     }
 
-    public override int GetHashCode()
-    {
-        var hash = 17;
-
-        foreach (var scope in scopes)
-            hash = hash * 23 + (scope == null ? 0 : scope.GetHashCode());
-
-        hash = hash * 23 + (name == null ? 0 : name.GetHashCode());
-        hash = hash * 23 + (url == null ? 0 : url.GetHashCode());
-
-        return hash;
-    }
-}
-
-[Serializable]
+    [Serializable]
     struct DependencyPlaceholder { }
 }

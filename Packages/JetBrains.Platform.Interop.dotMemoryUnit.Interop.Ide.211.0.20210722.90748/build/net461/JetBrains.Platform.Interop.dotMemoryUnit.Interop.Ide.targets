@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="JetBrains.dotMemoryUnit.Interop.Ide">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.dotMemoryUnit.Interop.Ide.dll</HintPath>
+      <Private>$(JetReferencesPrivate)</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

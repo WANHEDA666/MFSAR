@@ -15,14 +15,14 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
     private GameState gameState;
     private CanvasController canvasController;
     private EnemieComplex enemieComplex;
+    private Transform localTransform;
 
-    private Vector3 target;
     private bool scyllaIsFound;
     private bool scyllaIsCought;
     private Vector3 startPosition;
 
     public void SetEnemie(NavMeshAgent navMeshAgent, Animator animator, Vector3[] positionsForSearching, GameState gameState,
-        CanvasController canvasController, EnemieComplex enemieComplex)
+        CanvasController canvasController, EnemieComplex enemieComplex, Transform localTransform)
     {
         this.navMeshAgent = navMeshAgent;
         this.animator = animator;
@@ -30,6 +30,7 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
         this.gameState = gameState;
         this.canvasController = canvasController;
         this.enemieComplex = enemieComplex;
+        this.localTransform = localTransform;
         SubscribeActions();
         GetReady();
     }
@@ -45,8 +46,8 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
     private void SetScyllasTarget(Vector3 position)
     {
         scyllaIsFound = true;
-        target = FindTheClosestSpot(position);
-        navMeshAgent.SetDestination(target);
+        localTransform.localPosition = FindTheClosestSpot(position);
+        navMeshAgent.SetDestination(localTransform.localPosition);
     }
 
     private Vector3 FindTheClosestSpot(Vector3 ScyllaPosition)
@@ -81,13 +82,13 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
     private void SetRandomTarget()
     {
         scyllaIsFound = false;
-        target = positionsForSearching[UnityEngine.Random.Range(0, positionsForSearching.Length)];
-        //navMeshAgent.SetDestination(target);
+        localTransform.localPosition = positionsForSearching[UnityEngine.Random.Range(0, positionsForSearching.Length)];
+        navMeshAgent.SetDestination(localTransform.position);
     }
 
     public void Update()
     {
-        if (!scyllaIsFound && Math.Round(navMeshAgent.transform.position.x, 1) == Math.Round(target.x, 1) && Math.Round(navMeshAgent.transform.position.z, 1) == Math.Round(target.z, 1))
+        if (!scyllaIsFound && Math.Round(navMeshAgent.transform.localPosition.x, 1) == Math.Round(localTransform.localPosition.x, 1) && Math.Round(navMeshAgent.transform.localPosition.z, 1) == Math.Round(localTransform.localPosition.z, 1))
             SetRandomTarget();
     }
 

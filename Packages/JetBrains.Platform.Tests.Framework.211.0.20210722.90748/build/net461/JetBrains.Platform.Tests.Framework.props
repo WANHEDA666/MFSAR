@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.Ide.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.ProjectDocuments.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.Projects.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.Shell.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.Symbols.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.TextControl.dll" />
+    <JetContent Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.Projects.dll.config">
+      <TargetPath>JetBrains.Platform.Tests.Framework.Projects.dll.config</TargetPath>
+    </JetContent>
+    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Platform.Tests.Framework.JetMetadata.sstg" />
+  </ItemGroup>
+</Project>

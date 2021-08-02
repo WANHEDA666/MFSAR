@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Feature.Services.Cpp.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.ReSharper.Feature.Services.Cpp.UnitTesting.dll" />
+    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\x86\JetBrains.ReSharper.Psi.Cpp.dll" />
+    <JetContent Include="$(MSBuildThisFileDirectory)..\..\DotFiles\x64\JetBrains.ReSharper.Psi.Cpp.dll">
+      <TargetPath>x64\JetBrains.ReSharper.Psi.Cpp.dll</TargetPath>
+    </JetContent>
+    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Psi.Features.Cpp.Src.Core.JetMetadata.sstg" />
+  </ItemGroup>
+</Project>

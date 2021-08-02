@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Enables support for the “TsLibGen” build action in the projects. -->
+
+  <PropertyGroup>
+    <PsiGenToolsDir Condition="'$(PsiGenToolsDir)' == ''">$(MSBuildThisFileDirectory)</PsiGenToolsDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TsLibGenHomeDir Condition="'$(TsLibGenHomeDir)' == ''">$(MSBuildThisFileDirectory)</TsLibGenHomeDir>
+    <PrepareResourcesDependsOn>
+      $(PrepareResourcesDependsOn);
+      TsLibGen_Generate;
+    </PrepareResourcesDependsOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Add to the Visual Studio Build Action list on the files. -->
+    <AvailableItemName Include="TsLibGen" />
+    <!-- Calculate output. -->
+    <TsLibGenOutput Include="@(TsLibGen->'%(OutputFile)')">
+      <AutoGen>True</AutoGen>
+    </TsLibGenOutput>
+    <EmbeddedResource Include="@(TsLibGenOutput)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <GenerateTsLibGenInputs Include="@(TsLibGen)" />
+    <GenerateTsLibGenInputs Include="$(PsiGenToolsDir)/TsLibGen.dll" />
+    <GenerateTsLibGenInputs Include="$(MSBuildThisFileFullPath)" />
+  </ItemGroup>
+
+  <Target Name="TsLibGen_Generate" Inputs="@(GenerateTsLibGenInputs);$(PsiGenToolsDir)\TsLibGen.dll" Outputs="@(TsLibGenOutput)" Condition="'@(TsLibGen)' != ''">
+    <ItemGroup>
+      <TsLibGenProxyParam Include="@(TsLibGen)" ParameterName="Input" />
+      <!-- Don't try to load reference assemblies at runtime. -->
+      <TsLibGenStubReferences Include="@(ReferencePath)" Condition="'%(ResolvedFrom)' != '{TargetFrameworkDirectory}'" />
+    </ItemGroup>
+    <ProxyToSolutionCompiledTask Parameters="@(TsLibGenProxyParam)" TargetAssemblySimpleName="TsLibGen" TargetClassSimpleName="TsLibGenTaskStub" References="@(TsLibGenStubReferences)"/>
+    <Message Text="%(TsLibGen.FullPath) --(*)--> %(OutputFile)" />
+  </Target>
+
+  <Target Name="CleanTsLibGen_Clean">
+    <Delete Files="@(TsLibGenOutput)" TreatErrorsAsWarnings="true"  />
+  </Target>
+
+</Project>
