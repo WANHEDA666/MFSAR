@@ -97,3 +97,4 @@ remote_config_data
 
 # Sonarqube
 .sonarqube/
+Packages/com.ptc.vuforia.engine-10.0.12.tgz
