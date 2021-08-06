@@ -97,4 +97,10 @@ remote_config_data
 
 # Sonarqube
 .sonarqube/
+
+# Artifacts from UUID checking.
+Assets/uuids-duplicates.txt
+Assets/uuids-duplicates.txt.meta
+Assets/uuids-invalid.txt
+Assets/uuids-invalid.txt.meta
 Packages/com.ptc.vuforia.engine-10.0.12.tgz

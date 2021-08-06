@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <JetReference Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.PsiFeatures.Web.UIInteractive.dll" />
-    <JetMetadata Include="$(MSBuildThisFileDirectory)..\..\DotFiles\JetBrains.Psi.Features.Web.UIInteractive.JetMetadata.sstg" />
-  </ItemGroup>
-</Project>
