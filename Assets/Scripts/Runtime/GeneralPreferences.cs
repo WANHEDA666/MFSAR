@@ -7,6 +7,7 @@ public interface GeneralPreferences
     int BestBalloonsCount { get; }
     event Action<int> BalloonsEncreased;
     event Action<int> BestBalloonsCountIsBeaten;
+    void ResetBalloonsCount();
 }
 
 public class GeneralPreferencesImpl : GeneralPreferences
@@ -37,5 +38,10 @@ public class GeneralPreferencesImpl : GeneralPreferences
             BestBalloonsCount = balloonsCount;
             BestBalloonsCountIsBeaten.Invoke(BestBalloonsCount);
         }
+    }
+
+    public void ResetBalloonsCount()
+    {
+        balloonsCount = 0;
     }
 }

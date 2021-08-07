@@ -15,6 +15,7 @@ public class BalloonsPresenterImpl : BalloonsPresenter
     {
         this.generalPreferences = generalPreferences;
         this.canvasController = canvasController;
+        SubscribeActions();
     }
 
     private void SubscribeActions()
@@ -42,5 +43,7 @@ public class BalloonsPresenterImpl : BalloonsPresenter
     {
         for (int i = 0; i < hiddenBalloons.Count; i++)
             ShowBalloon(hiddenBalloons[i]);
+
+        generalPreferences.ResetBalloonsCount();
     }
 }
