@@ -23,6 +23,7 @@ public class CanvasControllerImpl : CanvasController
     private readonly Image speakerFace;
     private readonly Text speakerSpeech;
     private readonly Text speakerName;
+    private readonly AudioSource audioSource;
 
     private Dictionary<enemie_name, string> huntersSpeech = new Dictionary<enemie_name, string>() {
         {enemie_name.raelle, "I've caught you, my love" },
@@ -37,7 +38,7 @@ public class CanvasControllerImpl : CanvasController
     };
 
     public CanvasControllerImpl(GameState gameState, Text bestScore, Text balloonsScore, Button restart, Button home, GeneralPreferences generalPreferences,
-        GameObject panelSpeaker, Image speakerFace, Text speakerSpeech, Text speakerName)
+        GameObject panelSpeaker, Image speakerFace, Text speakerSpeech, Text speakerName, AudioSource audioSource)
     {
         this.gameState = gameState;
         this.bestScore = bestScore;
@@ -49,6 +50,7 @@ public class CanvasControllerImpl : CanvasController
         this.speakerFace = speakerFace;
         this.speakerSpeech = speakerSpeech;
         this.speakerName = speakerName;
+        this.audioSource = audioSource;
         SubscribeButtons();
         StartUIState();
     }
@@ -60,6 +62,7 @@ public class CanvasControllerImpl : CanvasController
         restart.onClick.AddListener(RestartEvent);
         home.onClick.AddListener(GoToTheMainMenu);
         gameState.ScyllaIsCoughtAction += ShowFindingPanel;
+        SetSound();
     }
 
     private void StartUIState()
@@ -101,5 +104,10 @@ public class CanvasControllerImpl : CanvasController
     private void ShowRestartButton()
     {
         restart.gameObject.SetActive(true);
+    }
+
+    private void SetSound()
+    {
+        audioSource.enabled = generalPreferences.SoundButtonState == 1 ? false : true;
     }
 }

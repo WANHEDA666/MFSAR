@@ -12,14 +12,16 @@ public class BalloonMonoBehaviour : MonoBehaviour, Balloon
     private GameObject balloonItself;
     private CapsuleCollider capsule;
     private AudioSource audioSource;
+    private GeneralPreferences generalPreferences;
 
-    public void SetBalloon(BalloonsPresenter balloons, ParticleSystem particle, GameObject balloonItself, CapsuleCollider capsule, AudioSource audioSource)
+    public void SetBalloon(BalloonsPresenter balloons, ParticleSystem particle, GameObject balloonItself, CapsuleCollider capsule, AudioSource audioSource, GeneralPreferences generalPreferences)
     {
         this.balloons = balloons;
         this.particle = particle;
         this.balloonItself = balloonItself;
         this.capsule = capsule;
         this.audioSource = audioSource;
+        this.generalPreferences = generalPreferences;
     }
 
     public void Show()
@@ -33,7 +35,7 @@ public class BalloonMonoBehaviour : MonoBehaviour, Balloon
         balloonItself.SetActive(false);
         particle.Play();
         capsule.enabled = false;
-        audioSource.Play();
+        if (generalPreferences.SoundButtonState == 0) audioSource.Play();
     }
 
     private void OnTriggerEnter(Collider other)

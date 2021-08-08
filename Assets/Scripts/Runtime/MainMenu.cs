@@ -20,11 +20,18 @@ public class MainMenuImpl : MainMenu
     private readonly Button arLink;
     private readonly Button backFromARLink;
     private readonly Button backFromAboutSection;
+    private readonly Button sound;
+    private readonly Sprite soundOn;
+    private readonly Sprite soundOff;
+    private readonly Image soundSprite;
+    private readonly GeneralPreferences generalPreferences;
+    private readonly AudioSource audioSource;
 
     public MainMenuImpl(Button arGameButton, Button arPicture, Button game3D,
         Button about, GameObject arLinkCanvas, GameObject mainCanvas,
         GameObject aboutCanvas, Button arLink, Button backFromARLink,
-        Button backFromAboutSection)
+        Button backFromAboutSection, Button sound, Sprite soundOn, Sprite soundOff,
+        Image soundSprite, GeneralPreferences generalPreferences, AudioSource audioSource)
     {
         this.arGameButton = arGameButton;
         this.arPicture = arPicture;
@@ -36,6 +43,12 @@ public class MainMenuImpl : MainMenu
         this.arLink = arLink;
         this.backFromARLink = backFromARLink;
         this.backFromAboutSection = backFromAboutSection;
+        this.sound = sound;
+        this.soundOn = soundOn;
+        this.soundOff = soundOff;
+        this.soundSprite = soundSprite;
+        this.generalPreferences = generalPreferences;
+        this.audioSource = audioSource;
         SubscribeButtons();
     }
 
@@ -48,6 +61,8 @@ public class MainMenuImpl : MainMenu
         arLink.onClick.AddListener(LinkToSaveThePicture);
         backFromARLink.onClick.AddListener(HideARCanvas);
         backFromAboutSection.onClick.AddListener(HideAboutCanvas);
+        sound.onClick.AddListener(ManageSound);
+        SetSound();
     }
 
     private void LoadARScene() {
@@ -86,5 +101,17 @@ public class MainMenuImpl : MainMenu
     {
         mainCanvas.SetActive(true);
         aboutCanvas.SetActive(false);
+    }
+
+    private void ManageSound()
+    {
+        generalPreferences.SoundButtonState = generalPreferences.SoundButtonState == 0 ? 1 : 0;
+        SetSound();
+    }
+
+    private void SetSound()
+    {
+        soundSprite.sprite = generalPreferences.SoundButtonState == 1 ? soundOff : soundOn;
+        audioSource.enabled = generalPreferences.SoundButtonState == 1 ? false : true;
     }
 }

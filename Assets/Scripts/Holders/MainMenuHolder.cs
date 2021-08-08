@@ -6,6 +6,8 @@ public interface MainMenuView
     GameObject ARPictureCanvas { get; }
     GameObject AboutCanvas { get; }
     Camera Camera { get; }
+    Sprite SoundOn { get; }
+    Sprite SoundOff { get; }
 }
 
 public class MainMenuHolder : MonoBehaviour, MainMenuView
@@ -14,6 +16,8 @@ public class MainMenuHolder : MonoBehaviour, MainMenuView
     [SerializeField] private GameObject arPictureCanvas;
     [SerializeField] private GameObject aboutCanvas;
     [SerializeField] private Camera cameraMain;
+    [SerializeField] private Sprite soundOn;
+    [SerializeField] private Sprite soundOff;
 
     public GameObject MainCanvas => mainCanvas;
 
@@ -22,4 +26,8 @@ public class MainMenuHolder : MonoBehaviour, MainMenuView
     public GameObject AboutCanvas => aboutCanvas;
 
     public Camera Camera => cameraMain;
+
+    public Sprite SoundOn => soundOn;
+
+    public Sprite SoundOff => soundOff;
 }

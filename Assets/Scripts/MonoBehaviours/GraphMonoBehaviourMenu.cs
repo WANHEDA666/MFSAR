@@ -5,6 +5,7 @@ public sealed class GraphMonoBehaviourMenu : MonoBehaviour
 {
     private void Awake()
     {
+        GeneralPreferences generalPreferences = new GeneralPreferencesImpl();
         MainMenuView mainMenuView = gameObject.GetComponent<MainMenuView>();
         GameObject mainCanvas = Instantiate(mainMenuView.MainCanvas, gameObject.transform);
         mainCanvas.GetComponent<Canvas>().worldCamera = mainMenuView.Camera;
@@ -22,7 +23,13 @@ public sealed class GraphMonoBehaviourMenu : MonoBehaviour
             aboutCanvas,
             arCanvas.transform.Find("PanelARPicture").transform.Find("ButtonSave").GetComponent<Button>(),
             arCanvas.transform.Find("PanelARPicture").transform.Find("ButtonMenu").GetComponent<Button>(),
-            aboutCanvas.transform.Find("PanelAbout").transform.Find("ButtonMenu").GetComponent<Button>()
+            aboutCanvas.transform.Find("PanelAbout").transform.Find("ButtonMenu").GetComponent<Button>(),
+            mainCanvas.transform.Find("ButtonSound").GetComponent<Button>(),
+            mainMenuView.SoundOn,
+            mainMenuView.SoundOff,
+            mainCanvas.transform.Find("ButtonSound").transform.Find("Image").GetComponent<Image>(),
+            generalPreferences,
+            mainMenuView.Camera.gameObject.GetComponent<AudioSource>()
         );
     }
 }

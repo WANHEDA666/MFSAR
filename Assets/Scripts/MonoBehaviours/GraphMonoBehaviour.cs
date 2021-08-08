@@ -33,7 +33,8 @@ public sealed class GraphMonoBehaviour : MonoBehaviour
             ResetPanel.transform.Find("PanelSpeaker").gameObject,
             ResetPanel.transform.Find("PanelSpeaker").transform.Find("ImageSpeakerBackground").transform.Find("ImageSpeakerFace").transform.GetComponent<Image>(),
             ResetPanel.transform.Find("PanelSpeaker").transform.Find("TextSpeech").GetComponent<Text>(),
-            ResetPanel.transform.Find("PanelSpeaker").transform.Find("TextSpeakerName").GetComponent<Text>()
+            ResetPanel.transform.Find("PanelSpeaker").transform.Find("TextSpeakerName").GetComponent<Text>(),
+            gameObject.GetComponent<AudioSource>()
         );
 
         GameObject playerPrefab = Instantiate(gameObject.GetComponent<IPlayerView>().Player, gameObject.transform);
@@ -90,7 +91,8 @@ public sealed class GraphMonoBehaviour : MonoBehaviour
                 balloonPrefab.GetComponentInChildren<ParticleSystem>(),
                 balloonPrefab.transform.Find("Balloon").gameObject,
                 balloonPrefab.GetComponent<CapsuleCollider>(),
-                balloonPrefab.GetComponent<AudioSource>()
+                balloonPrefab.GetComponent<AudioSource>(),
+                generalPreferences
             );
         }
 

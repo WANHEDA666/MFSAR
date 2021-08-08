@@ -5342,6 +5342,8 @@ MonoBehaviour:
   arPictureCanvas: {fileID: 6754837065671973939, guid: cf281efd379d04807ad860dcee3c46bf, type: 3}
   aboutCanvas: {fileID: 8353128956434766264, guid: 0d1d0547e50ab4ff28edd3d1b7056a89, type: 3}
   cameraMain: {fileID: 1972394067}
+  soundOn: {fileID: 21300000, guid: 6a03c2b822685477e9228c1d4d7cd842, type: 3}
+  soundOff: {fileID: 21300000, guid: 0fe0189488a99485fbed21cd9b878344, type: 3}
 --- !u!114 &1675110952
 MonoBehaviour:
   m_ObjectHideFlags: 0
