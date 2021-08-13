@@ -51,7 +51,7 @@ public class PlayerImpl : IPlayer
         moveVector.z = joystick.Vertical;
         if (moveVector != new Vector3()) {
             Vector3 tempVect = new Vector3(moveVector.x, 0, moveVector.z);
-            tempVect = tempVect.normalized * 4f * Time.deltaTime;
+            tempVect = tempVect.normalized * (4.5f * Time.deltaTime);
             characterController.Move(tempVect);
         }
         AnimationsSolution(moveVector);

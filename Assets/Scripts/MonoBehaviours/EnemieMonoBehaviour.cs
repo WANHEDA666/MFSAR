@@ -68,6 +68,7 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
     private void GameIsOver(EnemieComplex enemieComplex)
     {
         scyllaIsCought = true;
+        navMeshAgent.velocity = new Vector3();
         navMeshAgent.isStopped = true;
         animator.SetInteger("State", 0);
     }
@@ -97,8 +98,10 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
         if (!scyllaIsCought) {
             if (other.gameObject.layer == 8)
                 gameState.ScyllaIsFoundFunc(other.gameObject.transform.position);
-            if (Vector3.Distance(gameObject.transform.position, other.gameObject.transform.position) < 1.4f)
+            if (Vector3.Distance(gameObject.transform.position, other.gameObject.transform.position) < 1f)
+            {
                 gameState.ScyllaIsCoughtFunc(enemieComplex);
+            }
         }
     }
 
