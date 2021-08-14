@@ -98,7 +98,7 @@ public class EnemieMonoBehaviour : MonoBehaviour, Enemie
         if (!scyllaIsCought) {
             if (other.gameObject.layer == 8)
                 gameState.ScyllaIsFoundFunc(other.gameObject.transform.position);
-            if (Vector3.Distance(gameObject.transform.position, other.gameObject.transform.position) < 1f)
+            if (Vector3.Distance(gameObject.transform.position, other.gameObject.transform.position) < 1.1f)
             {
                 gameState.ScyllaIsCoughtFunc(enemieComplex);
             }

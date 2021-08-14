@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class GraphMonoBehaviourMenu : MonoBehaviour
 {
+    private readonly List<object> _objects = new List<object>();
+    private readonly List<object> _updatables = new List<object>();
+    
     private void Awake()
     {
         GeneralPreferences generalPreferences = new GeneralPreferencesImpl();
@@ -19,7 +24,6 @@ public sealed class GraphMonoBehaviourMenu : MonoBehaviour
             mainCanvas.transform.Find("ButtonSimpleGame").GetComponent<Button>(),
             mainCanvas.transform.Find("ButtonAbout").GetComponent<Button>(),
             arCanvas,
-            mainCanvas,
             aboutCanvas,
             arCanvas.transform.Find("PanelARPicture").transform.Find("ButtonSave").GetComponent<Button>(),
             arCanvas.transform.Find("PanelARPicture").transform.Find("ButtonMenu").GetComponent<Button>(),
@@ -29,7 +33,19 @@ public sealed class GraphMonoBehaviourMenu : MonoBehaviour
             mainMenuView.SoundOff,
             mainCanvas.transform.Find("ButtonSound").transform.Find("Image").GetComponent<Image>(),
             generalPreferences,
-            mainMenuView.Camera.gameObject.GetComponent<AudioSource>()
+            mainMenuView.Camera.gameObject.GetComponent<AudioSource>(),
+            mainCanvas.transform.Find("Raelle").GetComponent<Animator>(),
+            mainCanvas.transform.Find("Scylla").GetComponent<Animator>()
         );
+        
+        _objects.Add(mainMenu);
+        
+        _updatables.AddRange(_objects.FindAll(objectExemplar => objectExemplar is IUpdatable));
+    }
+
+    private void Update()
+    {
+        foreach(IUpdatable obj in _updatables)         
+            obj.Update();
     }
 }

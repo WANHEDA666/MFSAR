@@ -27,7 +27,7 @@ public class BalloonsPresenterImpl : BalloonsPresenter
     {
         hiddenBalloons.Add(balloon);
 
-        if (hiddenBalloons.Count == 3)
+        if (hiddenBalloons.Count == 4)
             ShowBalloon(hiddenBalloons[0]);
 
         generalPreferences.BalloonsCountIncreaseFunc();

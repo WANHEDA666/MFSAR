@@ -795,7 +795,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4064375524392519124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,8 +1458,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: dc631b9766be0bd4e8c722af7ad00ea5, type: 2}
     - target: {fileID: 5866666021909216657, guid: fdbddc99ca4a2814da37663aa5191b69, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: fdbddc99ca4a2814da37663aa5191b69, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8817898888258712963, guid: fdbddc99ca4a2814da37663aa5191b69, type: 3}
       propertyPath: m_Layer
@@ -1683,6 +1687,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 820308c0cd1334242be352d3a2f42b7c, type: 2}
+    - target: {fileID: 5866666021909216657, guid: d35c99f1ff5ec36408852214e0a30ddc, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8817898888258712963, guid: d35c99f1ff5ec36408852214e0a30ddc, type: 3}
       propertyPath: m_Layer
       value: 7
