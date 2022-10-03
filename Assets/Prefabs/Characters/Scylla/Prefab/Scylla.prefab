@@ -680,6 +680,7 @@ GameObject:
   - component: {fileID: 5938010524700058968}
   - component: {fileID: 326548120026152738}
   - component: {fileID: 6188707166732042927}
+  - component: {fileID: 6222152020173446459}
   m_Layer: 8
   m_Name: Scylla
   m_TagString: Untagged
@@ -740,6 +741,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &6222152020173446459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6423221245436198882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ec6774bbb24d619c6cea031c059238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 6188707166732042927}
+  animator: {fileID: 326548120026152738}
+  playerTransform: {fileID: 5938010524700058968}
 --- !u!1 &6550403184900611257
 GameObject:
   m_ObjectHideFlags: 0

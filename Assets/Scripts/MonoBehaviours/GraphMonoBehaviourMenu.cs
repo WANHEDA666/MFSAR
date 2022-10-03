@@ -11,13 +11,13 @@ public sealed class GraphMonoBehaviourMenu : MonoBehaviour
     private void Awake()
     {
         GeneralPreferences generalPreferences = new GeneralPreferencesImpl();
-        MainMenuView mainMenuView = gameObject.GetComponent<MainMenuView>();
-        GameObject mainCanvas = Instantiate(mainMenuView.MainCanvas, gameObject.transform);
-        mainCanvas.GetComponent<Canvas>().worldCamera = mainMenuView.Camera;
-        GameObject arCanvas = Instantiate(mainMenuView.ARPictureCanvas, gameObject.transform);
-        arCanvas.GetComponent<Canvas>().worldCamera = mainMenuView.Camera;
-        GameObject aboutCanvas = Instantiate(mainMenuView.AboutCanvas, gameObject.transform);
-        aboutCanvas.GetComponent<Canvas>().worldCamera = mainMenuView.Camera;
+        IMainMenuView iMainMenuView = gameObject.GetComponent<IMainMenuView>();
+        GameObject mainCanvas = Instantiate(iMainMenuView.MainCanvas, gameObject.transform);
+        mainCanvas.GetComponent<Canvas>().worldCamera = iMainMenuView.Camera;
+        GameObject arCanvas = Instantiate(iMainMenuView.ARPictureCanvas, gameObject.transform);
+        arCanvas.GetComponent<Canvas>().worldCamera = iMainMenuView.Camera;
+        GameObject aboutCanvas = Instantiate(iMainMenuView.AboutCanvas, gameObject.transform);
+        aboutCanvas.GetComponent<Canvas>().worldCamera = iMainMenuView.Camera;
         MainMenu mainMenu = new MainMenuImpl(
             mainCanvas.transform.Find("ButtonARGame").GetComponent<Button>(),
             mainCanvas.transform.Find("ButtonARGame").transform.Find("ButtonARPicture").GetComponent<Button>(),
@@ -29,11 +29,11 @@ public sealed class GraphMonoBehaviourMenu : MonoBehaviour
             arCanvas.transform.Find("PanelARPicture").transform.Find("ButtonMenu").GetComponent<Button>(),
             aboutCanvas.transform.Find("PanelAbout").transform.Find("ButtonMenu").GetComponent<Button>(),
             mainCanvas.transform.Find("ButtonSound").GetComponent<Button>(),
-            mainMenuView.SoundOn,
-            mainMenuView.SoundOff,
+            iMainMenuView.SoundOn,
+            iMainMenuView.SoundOff,
             mainCanvas.transform.Find("ButtonSound").transform.Find("Image").GetComponent<Image>(),
             generalPreferences,
-            mainMenuView.Camera.gameObject.GetComponent<AudioSource>(),
+            iMainMenuView.Camera.gameObject.GetComponent<AudioSource>(),
             mainCanvas.transform.Find("Raelle").GetComponent<Animator>(),
             mainCanvas.transform.Find("Scylla").GetComponent<Animator>()
         );

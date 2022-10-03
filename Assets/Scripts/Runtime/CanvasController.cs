@@ -108,6 +108,6 @@ public class CanvasControllerImpl : CanvasController
 
     private void SetSound()
     {
-        audioSource.enabled = generalPreferences.SoundButtonState == 1 ? false : true;
+        audioSource.enabled = generalPreferences.SoundState == 1 ? false : true;
     }
 }

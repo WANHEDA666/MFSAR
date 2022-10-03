@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.ptc.vuforia.engine": {
-      "version": "file:com.ptc.vuforia.engine-10.0.12.tgz",
+      "version": "file:com.ptc.vuforia.engine-10.10.2.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -28,6 +28,15 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ide.rider": {
+      "version": "2.0.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.1"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {

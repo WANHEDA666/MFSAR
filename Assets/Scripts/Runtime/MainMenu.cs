@@ -107,14 +107,14 @@ public class MainMenuImpl : MainMenu
 
     private void ManageSound()
     {
-        generalPreferences.SoundButtonState = generalPreferences.SoundButtonState == 0 ? 1 : 0;
+        generalPreferences.SoundState = generalPreferences.SoundState == 0 ? 1 : 0;
         SetSound();
     }
 
     private void SetSound()
     {
-        soundSprite.sprite = generalPreferences.SoundButtonState == 1 ? soundOff : soundOn;
-        audioSource.enabled = generalPreferences.SoundButtonState != 1;
+        soundSprite.sprite = generalPreferences.SoundState == 1 ? soundOff : soundOn;
+        audioSource.enabled = generalPreferences.SoundState != 1;
     }
 
     public void Update()

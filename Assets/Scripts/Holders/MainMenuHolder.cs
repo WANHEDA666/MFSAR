@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface MainMenuView
+public interface IMainMenuView
 {
     GameObject MainCanvas { get; }
     GameObject ARPictureCanvas { get; }
@@ -10,7 +10,7 @@ public interface MainMenuView
     Sprite SoundOff { get; }
 }
 
-public class MainMenuHolder : MonoBehaviour, MainMenuView
+public class IMainMenuHolder : MonoBehaviour, IMainMenuView
 {
     [SerializeField] private GameObject mainCanvas;
     [SerializeField] private GameObject arPictureCanvas;

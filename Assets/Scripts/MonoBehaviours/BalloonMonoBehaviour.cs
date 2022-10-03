@@ -35,7 +35,7 @@ public class BalloonMonoBehaviour : MonoBehaviour, Balloon
         balloonItself.SetActive(false);
         particle.Play();
         capsule.enabled = false;
-        if (generalPreferences.SoundButtonState == 0) audioSource.Play();
+        if (generalPreferences.SoundState == 0) audioSource.Play();
     }
 
     private void OnTriggerEnter(Collider other)
