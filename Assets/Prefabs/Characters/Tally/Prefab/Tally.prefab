@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 601753925950942601}
   - component: {fileID: 6427562080173519077}
   - component: {fileID: 6427562080173519076}
-  - component: {fileID: 7570810002859287582}
+  - component: {fileID: 7199251877623247600}
   m_Layer: 0
   m_Name: Tally
   m_TagString: Untagged
@@ -696,7 +696,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7570810002859287582
+--- !u!114 &7199251877623247600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -705,9 +705,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6193048145833569609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa04199edcb14905835226b17cb8ce6, type: 3}
+  m_Script: {fileID: 11500000, guid: ac074edd3c454f8499207f455166b915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 6427562080173519076}
+  animator: {fileID: 601753925950942601}
 --- !u!1 &6212233226462481938
 GameObject:
   m_ObjectHideFlags: 0

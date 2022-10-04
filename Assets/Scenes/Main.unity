@@ -247,6 +247,11 @@ MonoBehaviour:
     type: 3}
   playerView: {fileID: 6222152020173446459, guid: f33676328b27c4a848c1a8ebb48e096d,
     type: 3}
+  enemiesViews:
+  - {fileID: 5378333096236512700, guid: 3a23fa273a7d74345a909b00f4c54f40, type: 3}
+  - {fileID: 3022395648777293739, guid: 14d5eaf00027c4016bc0196bfbe98a5d, type: 3}
+  - {fileID: 7199251877623247600, guid: 17d1965910c494050a94e38acfc6bf9c, type: 3}
+  balloonViews: []
 --- !u!114 &79522065
 MonoBehaviour:
   m_ObjectHideFlags: 0

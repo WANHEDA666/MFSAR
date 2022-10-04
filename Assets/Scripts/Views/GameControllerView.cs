@@ -14,6 +14,8 @@ namespace Views
     public class GameControllerView : MonoBehaviour, IGameControllerView, IListenersSolver
     {
         [SerializeField] private Joystick joystick;
+        [SerializeField] private Text bestScoreCount;
+        [SerializeField] private Text currentScoreCount;
         [SerializeField] private Button homeButton;
         [SerializeField] private Button restartButton;
         [SerializeField] private GameObject talkerPanel;
@@ -32,6 +34,16 @@ namespace Views
         public void AddListeners()
         {
             homeButton.onClick.AddListener(() => OnHomeButtonClicked?.Invoke());
+        }
+
+        public void SetCurrentBalloonsCount(int count)
+        {
+            currentScoreCount.text = count.ToString();
+        }
+
+        public void SetBestBalloonsCount(int count)
+        {
+            bestScoreCount.text = count.ToString();
         }
 
         public void FixedUpdate()

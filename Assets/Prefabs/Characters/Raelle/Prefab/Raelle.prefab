@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 2576526995119297762}
   - component: {fileID: 8262763977831541000}
   - component: {fileID: 8262763977831541006}
-  - component: {fileID: 1726548035656806115}
+  - component: {fileID: 3022395648777293739}
   m_Layer: 0
   m_Name: Raelle
   m_TagString: Untagged
@@ -1222,7 +1222,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1726548035656806115
+--- !u!114 &3022395648777293739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1231,6 +1231,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9109187611326927906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa04199edcb14905835226b17cb8ce6, type: 3}
+  m_Script: {fileID: 11500000, guid: ac074edd3c454f8499207f455166b915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 8262763977831541006}
+  animator: {fileID: 2576526995119297762}

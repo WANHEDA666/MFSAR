@@ -7,6 +7,10 @@ namespace Views
     {
         [SerializeField] private NavMeshAgent navMeshAgent;
         [SerializeField] private Animator animator;
-        [SerializeField] private Transform enemyTransform;
+
+        private void Start()
+        {
+            navMeshAgent.SetDestination(new Vector3());
+        }
     }
 }

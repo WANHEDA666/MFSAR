@@ -7,6 +7,8 @@ namespace Views
     {
         public Transform canvas;
         public Transform playerPosition;
+        public Transform[] enemiesPositions;
+        public BalloonView[] balloonViews;
         private Camera main;
 
         private void Awake()

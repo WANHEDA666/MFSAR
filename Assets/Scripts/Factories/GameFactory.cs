@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Interfaces;
+using Models;
 using Presenters;
 using UnityEngine;
 using Views;
@@ -14,6 +15,7 @@ namespace Factories
         [SerializeField] private DefaultGameView defaultGameView;
         [SerializeField] private GameControllerView gameControllerView;
         [SerializeField] private PlayerView playerView;
+        [SerializeField] private EnemyView[] enemiesViews;
         private readonly List<object> views = new List<object>();
         private readonly List<object> presenters = new List<object>();
 
@@ -63,10 +65,11 @@ namespace Factories
             AddToList(view, presenter);
         }
 
-        public IGameControllerView CrateGameControllerScreen(Transform canvas)
+        public IGameControllerView CrateGameControllerScreen(Transform canvas, BalloonView[] balloonViews)
         {
             var view = Instantiate(gameControllerView, canvas);
-            var presenter = new GameControllerPresenter(view,this);
+            var model = new GameControllerModel();
+            var presenter = new GameControllerPresenter(view, model,this, balloonViews);
             AddToList(view, presenter);
             return view;
         }
@@ -76,6 +79,16 @@ namespace Factories
             var view = Instantiate(playerView, playerPosition);
             var presenter = new PlayerPresenter(view,gameControllerView);
             AddToList(view, presenter);
+        }
+
+        public void CreateEnemies(Transform[] enemiesPositions)
+        {
+            for (var i = 0; i < enemiesPositions.Length; i++)
+            {
+                var view = Instantiate(enemiesViews[i], enemiesPositions[i]);
+                var presenter = new EnemyPresenter(view);
+                AddToList(view, presenter);
+            }
         }
     }
 }

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6543642423160772658}
   - component: {fileID: 839118363614337269}
   - component: {fileID: 839118363614337268}
-  - component: {fileID: 8463906060915816619}
+  - component: {fileID: 5378333096236512700}
   m_Layer: 0
   m_Name: Abigail
   m_TagString: Untagged
@@ -123,7 +123,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8463906060915816619
+--- !u!114 &5378333096236512700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,9 +132,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 532634653255866610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa04199edcb14905835226b17cb8ce6, type: 3}
+  m_Script: {fileID: 11500000, guid: ac074edd3c454f8499207f455166b915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 839118363614337268}
+  animator: {fileID: 6543642423160772658}
+  enemyTransform: {fileID: 878092842630726216}
 --- !u!1 &700881279309408229
 GameObject:
   m_ObjectHideFlags: 0
