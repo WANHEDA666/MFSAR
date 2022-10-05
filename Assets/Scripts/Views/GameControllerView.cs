@@ -25,6 +25,7 @@ namespace Views
         public Vector3 MoveVector { get; private set; }
         public Vector3 TempVector { get; private set; }
         public event Action OnHomeButtonClicked;
+        public event Action OnRestartButtonClicked;
 
         private void Awake()
         {
@@ -34,6 +35,7 @@ namespace Views
         public void AddListeners()
         {
             homeButton.onClick.AddListener(() => OnHomeButtonClicked?.Invoke());
+            restartButton.onClick.AddListener(() => OnRestartButtonClicked?.Invoke());
         }
 
         public void SetCurrentBalloonsCount(int count)
@@ -44,6 +46,13 @@ namespace Views
         public void SetBestBalloonsCount(int count)
         {
             bestScoreCount.text = count.ToString();
+        }
+
+        public void ShowGameEndScreen()
+        {
+            restartButton.gameObject.SetActive(true);
+            joystick.Reset();
+            joystick.enabled = false;
         }
 
         public void FixedUpdate()
@@ -61,6 +70,7 @@ namespace Views
         public void RemoveListeners()
         {
             homeButton.onClick.RemoveAllListeners();
+            restartButton.onClick.RemoveAllListeners();
             Destroy(gameObject);
         }
     }

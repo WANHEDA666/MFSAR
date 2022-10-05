@@ -6,9 +6,10 @@ namespace Views
     public class DefaultGameView : MonoBehaviour, IListenersSolver
     {
         public Transform canvas;
-        public Transform playerPosition;
-        public Transform[] enemiesPositions;
+        public PlayerView playerView;
+        public EnemyView[] enemyViews;
         public BalloonView[] balloonViews;
+        public Transform[] searchPositions;
         private Camera main;
 
         private void Awake()

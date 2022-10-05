@@ -17,9 +17,10 @@ namespace Presenters
 
         private void Initialize()
         {
-            var gameControllerView = gameFactory.CrateGameControllerScreen(defaultGameView.canvas, defaultGameView.balloonViews);
-            gameFactory.CreatePlayer(gameControllerView, defaultGameView.playerPosition);
-            gameFactory.CreateEnemies(defaultGameView.enemiesPositions);
+            var balloonsService = gameFactory.CreateBalloonsService(defaultGameView.balloonViews);
+            var enemiesService = gameFactory.CreateEnemiesService(defaultGameView.enemyViews, defaultGameView.searchPositions);
+            var gameControllerView = gameFactory.CrateGameControllerScreen(defaultGameView.canvas, balloonsService, enemiesService);
+            gameFactory.CreatePlayer(gameControllerView, defaultGameView.playerView);
         }
     }
 }

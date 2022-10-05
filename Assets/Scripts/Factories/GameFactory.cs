@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Interfaces;
 using Models;
 using Presenters;
+using Services;
 using UnityEngine;
 using Views;
 
@@ -14,8 +15,6 @@ namespace Factories
         [SerializeField] private AboutView aboutView;
         [SerializeField] private DefaultGameView defaultGameView;
         [SerializeField] private GameControllerView gameControllerView;
-        [SerializeField] private PlayerView playerView;
-        [SerializeField] private EnemyView[] enemiesViews;
         private readonly List<object> views = new List<object>();
         private readonly List<object> presenters = new List<object>();
 
@@ -65,30 +64,33 @@ namespace Factories
             AddToList(view, presenter);
         }
 
-        public IGameControllerView CrateGameControllerScreen(Transform canvas, BalloonView[] balloonViews)
+        public IGameControllerView CrateGameControllerScreen(Transform canvas, IBalloonsCollector balloons, IGameEndObserver gameEndObserver)
         {
             var view = Instantiate(gameControllerView, canvas);
-            var model = new GameControllerModel();
-            var presenter = new GameControllerPresenter(view, model,this, balloonViews);
+            var presenter = new GameControllerPresenter(view,this, balloons, gameEndObserver);
             AddToList(view, presenter);
             return view;
         }
 
-        public void CreatePlayer(IGameControllerView gameControllerView, Transform playerPosition)
+        public void CreatePlayer(IGameControllerView gameControllerView, PlayerView playerView)
         {
-            var view = Instantiate(playerView, playerPosition);
-            var presenter = new PlayerPresenter(view,gameControllerView);
-            AddToList(view, presenter);
+            var presenter = new PlayerPresenter(playerView, gameControllerView);
+            AddToList(presenter);
         }
 
-        public void CreateEnemies(Transform[] enemiesPositions)
+        public IGameEndObserver CreateEnemiesService(EnemyView[] enemyViews, Transform[] searchPositions)
         {
-            for (var i = 0; i < enemiesPositions.Length; i++)
-            {
-                var view = Instantiate(enemiesViews[i], enemiesPositions[i]);
-                var presenter = new EnemyPresenter(view);
-                AddToList(view, presenter);
-            }
+            var service = new EnemiesService(enemyViews, searchPositions);
+            AddToList(service);
+            return service;
+        }
+
+        public IBalloonsCollector CreateBalloonsService(BalloonView[] balloonViews)
+        {
+            var model = new BalloonsModel();
+            var service = new BalloonsService(balloonViews, model);
+            AddToList(model, service);
+            return service;
         }
     }
 }

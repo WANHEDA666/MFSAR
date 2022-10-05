@@ -5,7 +5,8 @@ namespace Views
 {
     public interface IBalloonCollector
     {
-        Action OnBalloonCollected { get; set; }
+        Action<IBalloonCollector> OnBalloonCollected { get; set; }
+        void ReleaseBalloon();
     }
     
     public class BalloonView : MonoBehaviour, IBalloonCollector
@@ -13,17 +14,30 @@ namespace Views
         [SerializeField] private ParticleSystem particle;
         [SerializeField] private GameObject balloon;
         [SerializeField] private AudioSource audioSource;
-        public Action OnBalloonCollected { get; set; }
+        [SerializeField] private CapsuleCollider capsuleCollider;
+        public Action<IBalloonCollector> OnBalloonCollected { get; set; }
         
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == 8)
             {
-                OnBalloonCollected?.Invoke();
-                balloon.SetActive(false);
+                OnBalloonCollected?.Invoke(this);
+                HideBalloon();
                 particle.Play();
                 audioSource.Play();
             }
+        }
+
+        private void HideBalloon()
+        {
+            balloon.SetActive(false);
+            capsuleCollider.enabled = false;
+        }
+
+        public void ReleaseBalloon()
+        {
+            balloon.SetActive(true);
+            capsuleCollider.enabled = true;
         }
     }
 }

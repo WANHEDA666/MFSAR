@@ -160,6 +160,7 @@ MonoBehaviour:
   particle: {fileID: 2689086029062002387}
   balloon: {fileID: 5803180024515360416}
   audioSource: {fileID: 1889925535207154227}
+  capsuleCollider: {fileID: 1962362275802627421}
 --- !u!1 &4882411079669601268
 GameObject:
   m_ObjectHideFlags: 0

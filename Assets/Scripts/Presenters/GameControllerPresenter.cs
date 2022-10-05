@@ -1,6 +1,6 @@
 using Factories;
 using Interfaces;
-using Models;
+using Services;
 using Views;
 
 namespace Presenters
@@ -8,37 +8,33 @@ namespace Presenters
     public class GameControllerPresenter : IListenersSolver
     {
         private readonly GameControllerView gameControllerView;
-        private readonly GameControllerModel gameControllerModel;
         private readonly GameFactory gameFactory;
-        private readonly IBalloonCollector[] balloonCollectors;
+        private readonly IBalloonsCollector balloonsCollector;
+        private readonly IGameEndObserver gameEndObserver;
 
-        public GameControllerPresenter(GameControllerView gameControllerView, GameControllerModel gameControllerModel, GameFactory gameFactory, IBalloonCollector[] balloonCollectors)
+        public GameControllerPresenter(GameControllerView gameControllerView, GameFactory gameFactory, IBalloonsCollector balloonsCollector, IGameEndObserver gameEndObserver)
         {
             this.gameControllerView = gameControllerView;
-            this.gameControllerModel = gameControllerModel;
             this.gameFactory = gameFactory;
-            this.balloonCollectors = balloonCollectors;
+            this.balloonsCollector = balloonsCollector;
+            this.gameEndObserver = gameEndObserver;
+            gameControllerView.SetCurrentBalloonsCount(balloonsCollector.CurrentInfo.CurrentScore);
+            gameControllerView.SetBestBalloonsCount(balloonsCollector.CurrentInfo.BestScore);
             AddListeners();
         }
 
         public void AddListeners()
         {
             gameControllerView.OnHomeButtonClicked += CreateMainMenuScreen;
-            foreach (var balloonCollector in balloonCollectors)
-            {
-                balloonCollector.OnBalloonCollected += IncreaseBalloonsCount;
-            }
+            balloonsCollector.OnCurrentScoreChanged += gameControllerView.SetCurrentBalloonsCount;
+            balloonsCollector.OnBestScoreChanged += gameControllerView.SetBestBalloonsCount;
+            gameEndObserver.OnGameEnded += gameControllerView.ShowGameEndScreen;
+            gameControllerView.OnRestartButtonClicked += RestartGame;
         }
 
-        private void IncreaseBalloonsCount()
+        private void RestartGame()
         {
-            gameControllerModel.CurrentBalloonsCount += 1;
-            gameControllerView.SetCurrentBalloonsCount(gameControllerModel.CurrentBalloonsCount);
-            if (gameControllerModel.CurrentBalloonsCount > gameControllerModel.BestBalloonsCount)
-            {
-                gameControllerView.SetBestBalloonsCount(gameControllerModel.CurrentBalloonsCount);
-                gameControllerModel.BestBalloonsCount = gameControllerModel.CurrentBalloonsCount;
-            }
+            gameFactory.CreateDefaultGame();
         }
 
         private void CreateMainMenuScreen()
@@ -49,10 +45,10 @@ namespace Presenters
         public void RemoveListeners()
         {
             gameControllerView.OnHomeButtonClicked -= CreateMainMenuScreen;
-            foreach (var balloonCollector in balloonCollectors)
-            {
-                balloonCollector.OnBalloonCollected -= IncreaseBalloonsCount;
-            }
+            balloonsCollector.OnCurrentScoreChanged -= gameControllerView.SetCurrentBalloonsCount;
+            balloonsCollector.OnBestScoreChanged -= gameControllerView.SetBestBalloonsCount;
+            gameEndObserver.OnGameEnded -= gameControllerView.ShowGameEndScreen;
+            gameControllerView.OnRestartButtonClicked -= RestartGame;
         }
     }
 }

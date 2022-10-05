@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Models
 {
-    public class GameControllerModel
+    public class BalloonsModel
     {
         private const string bestBalloonsCount = "BestBalloonsCount";
         private const string currentBalloonsCount = "CurrentBalloonsCount";
         
-        public GameControllerModel()
+        public BalloonsModel()
         {
             ResetCurrentBalloonsCount();
         }
